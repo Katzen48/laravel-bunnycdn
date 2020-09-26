@@ -16,18 +16,6 @@ use League\Flysystem\Filesystem;
 class BunnyCdnServiceProvider extends ServiceProvider
 {
     /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        $this->mergeConfigFrom(
-            __DIR__ . '/../../config/bunnycdn.php', 'bunnycdn'
-        );
-    }
-
-    /**
      * Bootstrap any application services.
      *
      * @return void
@@ -40,7 +28,7 @@ class BunnyCdnServiceProvider extends ServiceProvider
 
         Storage::extend('bunnycdn', function($app, $config)
         {
-            $client = new BunnyCDNAdapter(new BunnyCDNStorage(config('bunnycdn.storage.zone'), config('bunnycdn.storage.apikey'), config('bunnycdn.storage.region')));
+            $client = new BunnyCDNAdapter(new BunnyCDNStorage(config['zone'], config['apikey'], config['region']));
 
             return new Filesystem($client);
         });
