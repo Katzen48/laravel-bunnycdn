@@ -12,7 +12,8 @@
     "require": {
         "ext-json": "*",
         "laravel/framework": "5.8.*|^7.0",
-        "platformcommunity/flysystem-bunnycdn": "0.3.*"
+        "platformcommunity/flysystem-bunnycdn": "0.3.*",
+        "ext-curl": "*"
     },
     "autoload": {
         "psr-4": {

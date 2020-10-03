@@ -9,8 +9,8 @@ namespace Katzen48\LaravelBunnyCdn\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Storage;
-use BunnyCDN\Storage\BunnyCDNStorage;
-use PlatformCommunity\Flysystem\BunnyCDN\BunnyCDNAdapter;
+use Katzen48\LaravelBunnyCdn\Filesystem\BunnyCDNStorage;
+use Katzen48\LaravelBunnyCdn\Filesystem\BunnyCDNAdapter;
 use League\Flysystem\Filesystem;
 
 class BunnyCdnServiceProvider extends ServiceProvider
