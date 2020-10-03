@@ -22,10 +22,6 @@ class BunnyCdnServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->publishes([
-            __DIR__ . '/../../config/bunnycdn.php' => config_path('bunnycdn.php')
-        ], 'config');
-
         Storage::extend('bunnycdn', function($app, $config)
         {
             $client = new BunnyCDNAdapter(new BunnyCDNStorage($config['zone'], $config['apikey'], $config['region']));
