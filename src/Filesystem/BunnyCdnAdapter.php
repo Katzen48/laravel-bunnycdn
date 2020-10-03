@@ -27,8 +27,8 @@ class BunnyCdnAdapter extends \PlatformCommunity\Flysystem\BunnyCDN\BunnyCDNAdap
                 throw new BunnyCDNStorageException('The resource could not be opened.');
             }
             $dataLength = fstat($resource);
-            $normalizedPath = $this->fullPath($this->$this->bunnyCDNStorage->normalizePath($path));
             $storage = $this->getStorage();
+            $normalizedPath = $this->fullPath($storage->normalizePath($path));
 
             return $storage->sendHttpRequest($normalizedPath, 'PUT', $fileStream, $dataLength);
         } catch (BunnyCDNStorageException $e) {
