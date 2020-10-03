@@ -28,7 +28,7 @@ class BunnyCdnServiceProvider extends ServiceProvider
 
         Storage::extend('bunnycdn', function($app, $config)
         {
-            $client = new BunnyCDNAdapter(new BunnyCDNStorage(config['zone'], config['apikey'], config['region']));
+            $client = new BunnyCDNAdapter(new BunnyCDNStorage($config['zone'], $config['apikey'], $config['region']));
 
             return new Filesystem($client);
         });
