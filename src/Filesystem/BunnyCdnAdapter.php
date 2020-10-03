@@ -8,6 +8,7 @@
 namespace Katzen48\LaravelBunnyCdn\Filesystem;
 
 use BunnyCDN\Storage\Exceptions\BunnyCDNStorageException;
+use Illuminate\Support\Facades\Log;
 use Katzen48\LaravelBunnyCdn\Filesystem\BunnyCDNStorage;
 use League\Flysystem\Config;
 use PlatformCommunity\Flysystem\BunnyCDN\Util;
@@ -26,12 +27,14 @@ class BunnyCdnAdapter extends \PlatformCommunity\Flysystem\BunnyCDN\BunnyCDNAdap
             if ($fileStream === false) {
                 throw new BunnyCDNStorageException('The resource could not be opened.');
             }
-            $dataLength = fstat($resource);
+            $dataLength = fstat($resource)['size'];
             $storage = $this->getStorage();
-            $normalizedPath = $this->fullPath($storage->normalizePath($path));
+            $normalizedPath = $this->fullPath($path);
 
             return $storage->sendHttpRequest($normalizedPath, 'PUT', $fileStream, $dataLength);
         } catch (BunnyCDNStorageException $e) {
+            report($e);
+
             return false;
         }
     }
